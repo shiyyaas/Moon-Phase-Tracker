@@ -13,19 +13,19 @@
     <div class="flex flex-col items-center justify-center min-h-screen bg-gray-100">
         <h1 class="text-3xl font-bold mb-4">Moon Phase Tracker</h1>
         <div class="flex flex-col gap-3 items-center mb-6">
-            <div class="w-24 h-24 bg-yellow-200 rounded-full flex items-center justify-center text-2xl">
-                🌕
+            <div class="w-24 h-24 bg-yellow-200 rounded-full flex items-center justify-center text-2xl">              
+            🌒
             </div>
-            <button class="px-4 py-2 bg-blue-500 text-white rounded">Next 7 days</button>
+            <button id="7btn" class="px-4 py-2 bg-blue-500 text-white rounded">Next 7 days</button>
         </div>
         <p class="text-gray-700">Today (24/8/2025) : Waxing Crescent</p>
 
         <!-- Next 7 days -->
-        <div id="7days" class="flex flex-wrap justify-center gap-7 hidden">
+        <div id="sevenD" class="flex flex-wrap justify-center gap-7 hidden">
             <div class="flex text-gray-700 my-10">
                 <div class="flex flex-col gap-3 items-center mb-6">
                     <div class="w-24 h-24 bg-yellow-200 rounded-full flex items-center justify-center text-2xl">
-                        🌒
+                    🌒
                     </div>
                     <p class="text-gray-700">25/8/2025 : Waxing Crescent</p>
                 </div>
@@ -33,7 +33,7 @@
             <div class="flex text-gray-700 my-10">
                 <div class="flex flex-col gap-3 items-center mb-6">
                     <div class="w-24 h-24 bg-yellow-200 rounded-full flex items-center justify-center text-2xl">
-                        🌓
+                    🌒
                     </div>
                     <p class="text-gray-700">26/8/2025 : Waxing Crescent</p>
                 </div>
@@ -41,7 +41,7 @@
             <div class="flex text-gray-700 my-10">
                 <div class="flex flex-col gap-3 items-center mb-6">
                     <div class="w-24 h-24 bg-yellow-200 rounded-full flex items-center justify-center text-2xl">
-                        🌓
+                    🌒
                     </div>
                     <p class="text-gray-700">27/8/2025 : Waxing Crescent</p>
                 </div>
@@ -49,7 +49,7 @@
             <div class="flex text-gray-700 my-10">
                 <div class="flex flex-col gap-3 items-center mb-6">
                     <div class="w-24 h-24 bg-yellow-200 rounded-full flex items-center justify-center text-2xl">
-                        🌓
+                    🌒
                     </div>
                     <p class="text-gray-700">28/8/2025 : Waxing Crescent</p>
                 </div>
@@ -57,7 +57,7 @@
             <div class="flex text-gray-700 my-10">
                 <div class="flex flex-col gap-3 items-center mb-6">
                     <div class="w-24 h-24 bg-yellow-200 rounded-full flex items-center justify-center text-2xl">
-                        🌓
+                    🌒
                     </div>
                     <p class="text-gray-700">29/8/2025 : Waxing Crescent</p>
                 </div>
@@ -65,7 +65,7 @@
             <div class="flex text-gray-700 my-10">
                 <div class="flex flex-col gap-3 items-center mb-6">
                     <div class="w-24 h-24 bg-yellow-200 rounded-full flex items-center justify-center text-2xl">
-                        🌓
+                    🌒
                     </div>
                     <p class="text-gray-700">30/8/2025 : Waxing Crescent</p>
                 </div>
@@ -73,7 +73,7 @@
             <div class="flex text-gray-700 my-10">
                 <div class="flex flex-col gap-3 items-center mb-6">
                     <div class="w-24 h-24 bg-yellow-200 rounded-full flex items-center justify-center text-2xl">
-                        🌓
+                    🌓
                     </div>
                     <p class="text-gray-700">31/8/2025 : First Quarter</p>
                 </div>
@@ -85,7 +85,13 @@
 
     <script>
         $(document).ready(function() {
-            
+            $("#7btn").click(function(){
+                $("#sevenD").fadeToggle(500, function() {
+                    if ($(this).is(':visible')) {
+                        $(this).css('display', 'flex');
+                    }
+                });
+            });
         });
     </script>
 </body>
