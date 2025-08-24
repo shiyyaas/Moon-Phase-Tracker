@@ -11,7 +11,7 @@ Created for the μLearn x NASA mentorship pre-selection task.
 Take a look at the live Moon Phase Tracker here:  
 [🌐 Live Demo](https://shiyyaas.github.io/Moon-Phase-Tracker)
 
-![Moon Phase Tracker Preview](images/preview.png)
+![Moon Phase Tracker Preview](images/previewM.PNG)
 
 ---
 
