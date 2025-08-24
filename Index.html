@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moon phase tracker</title>
+    <!-- Tailwindcss link -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <!-- Jquery link -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="flex flex-col items-center justify-center min-h-screen bg-gray-100">
+        <h1 class="text-3xl font-bold mb-4">Moon Phase Tracker</h1>
+        <div class="flex items-center space-x-4 mb-6">
+            <button class="px-4 py-2 bg-blue-500 text-white rounded">Prev</button>
+            <div class="w-24 h-24 bg-yellow-200 rounded-full flex items-center justify-center text-2xl">
+                🌕
+            </div>
+            <button class="px-4 py-2 bg-blue-500 text-white rounded">Next</button>
+        </div>
+        <p class="text-gray-700">Current Phase: Full Moon</p>
+    </div>
+</body>
+</html>
