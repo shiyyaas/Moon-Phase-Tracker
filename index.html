@@ -12,28 +12,25 @@
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 </head>
 <body>
+    
     <div class="flex flex-col items-center justify-center min-h-screen bg-gray-100">
         <h1 class="text-3xl font-bold mb-4">Moon Phase Tracker</h1>
-
         <!-- today moon phase -->
         <div id="nowmoon">
-
         </div>
 
         <button id="7btn" onclick="Smoon()" class="px-4 py-2 bg-blue-500 text-white rounded">Next 7 days</button>
-        
 
         <!-- Next 7 days -->
          <div id="Sdays" class="flex flex-wrap justify-center gap-7 hidden">
-
         </div>  
     </div>
 
     <script>
-        let today = new Date();
-
+    let today = new Date();
       // For today's moon data (nowmoondata)
-      async function nowmoon() {
+        async function nowmoon() {
+            // FETCHING DATE FOR TODAY DISPLAY
                 const response = await fetch('https://api.apiverve.com/v1/moonphases', {
                     method: 'GET',
                     headers: {
@@ -44,7 +41,7 @@
                 return nowmoondata;
                }
       // For displaying nowmoondata
-      function displaynowmoon(data,today) {
+        function displaynowmoon(data,today) {
           const container = document.getElementById('nowmoon');
           
           container.innerHTML = `
@@ -56,80 +53,68 @@
           </div>
           `;
         }
-
         // This works onstart or reload
         document.addEventListener('DOMContentLoaded', function() {  
           nowmoon().then(nowmoondata => {
                 today = today.toLocaleDateString();
                 displaynowmoon(nowmoondata,today);
+            }).catch(error => {
+                document.getElementById('nowmoon').innerHTML = `
+                <div class="flex flex-col gap-3 items-center mb-6">
+                    <p class="text-gray-700">${error.message}</p>
+                </div>
+                `;
             });
         });
 
 
       // For Next 7days with button
-      async function Smoon() {
-
-        const button = document.getElementById('7btn');
-        // Disable button and show loading
-        button.disabled = true;
-        button.textContent = 'Loading...';
-
-        // Hiding results
-        document.getElementById('Sdays').classList.add('hidden');
-        document.getElementById('Sdays').classList.remove('flex');
-
-       
-        
-        // Clearing before once again
-        const container1 = document.getElementById('Sdays');
-        container1.innerHTML = '';
-            
-        for (let i = 1; i <= 7; i++) {
-                
-                // GETTING 7 DATES
-                let cptoday = new Date(); 
-                cptoday.setDate(cptoday.getDate() + i);
-                const nextdayF = cptoday.toLocaleDateString(); // Format the new date as a string
-
-                // FETCHING THE DATA
-                const response = await fetch(`https://api.apiverve.com/v1/moonphases?date=${nextdayF}`, {
-                method: 'GET',
-                headers: {
-                    'X-API-Key': '79f5d1bc-2855-4c25-aa95-4fa5a2dc213',
-                }
-                });
-                const Smoondata = await response.json();
-
-                // DISPLAYING THE DATA
-                const container1 = document.getElementById('Sdays');
-                container1.innerHTML += `
-                    <div class="flex text-gray-700 my-10">
-                        <div class="flex flex-col gap-3 items-center mb-6">
-                            <div class="w-24 h-24 bg-yellow-200 rounded-full flex items-center justify-center text-2xl">
-                            ${Smoondata.data.phaseEmoji}
+        async function Smoon() {
+            const button = document.getElementById('7btn');
+            // Disable button and show loading
+            button.disabled = true;
+            button.textContent = 'Loading...';
+            // Hiding results
+            document.getElementById('Sdays').classList.add('hidden');
+            document.getElementById('Sdays').classList.remove('flex');
+            // Clearing before once again
+            const container1 = document.getElementById('Sdays');
+            container1.innerHTML = '';
+            for (let i = 1; i <= 7; i++) { 
+                    // GETTING 7 DATES
+                    let cptoday = new Date(); 
+                    cptoday.setDate(cptoday.getDate() + i);
+                    const nextdayF = cptoday.toLocaleDateString(); // Format the new date as a string
+                    // FETCHING THE DATA
+                    const response = await fetch(`https://api.apiverve.com/v1/moonphases?date=${nextdayF}`, {
+                    method: 'GET',
+                    headers: {
+                        'X-API-Key': '79f5d1bc-2855-4c25-aa95-4fa5a2dc213',
+                    }
+                    });
+                    const Smoondata = await response.json();
+                    // DISPLAYING THE DATA
+                    const container1 = document.getElementById('Sdays');
+                    container1.innerHTML += `
+                        <div class="flex text-gray-700 my-10">
+                            <div class="flex flex-col gap-3 items-center mb-6">
+                                <div class="w-24 h-24 bg-yellow-200 rounded-full flex items-center justify-center text-2xl">
+                                ${Smoondata.data.phaseEmoji}
+                                </div>
+                                <p class="text-gray-700">${nextdayF} : ${Smoondata.data.phase}</p>
                             </div>
-                            <p class="text-gray-700">${nextdayF} : ${Smoondata.data.phase}</p>
-                        </div>
-                    </div> 
-                `;
-            }
+                        </div> 
+                    `;
+                }
 
-            // Hiding loading 
-            button.disabled = false;
-            button.textContent = 'Next 7 days';
-
-            // Showing result
-            document.getElementById('Sdays').classList.remove('hidden');
-            document.getElementById('Sdays').classList.add('flex');
+                // Hiding loading 
+                button.disabled = false;
+                button.textContent = 'Next 7 days';
+                // Showing result
+                document.getElementById('Sdays').classList.remove('hidden');
+                document.getElementById('Sdays').classList.add('flex');
 
         }
-
-        // // jQuery
-        // $(document).ready(function() {
-        //     $("#7btn").click(function(){
-        //       //  $("#sevenD").toggleClass("flex hidden");
-        //     });
-        // });
     </script>
 </body>
 </html>
