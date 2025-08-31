@@ -23,7 +23,7 @@
         <p class="text-gray-700">Today (24/8/2025) : Waxing Crescent</p>
 
         <!-- Next 7 days -->
-        <div id="sevenD" class="flex flex-wrap justify-center gap-7 hidden">
+        <div id="sevenD" class="flex-wrap justify-center gap-7 hidden">
             <div class="flex text-gray-700 my-10">
                 <div class="flex flex-col gap-3 items-center mb-6">
                     <div class="w-24 h-24 bg-yellow-200 rounded-full flex items-center justify-center text-2xl">
@@ -88,11 +88,7 @@
     <script>
         $(document).ready(function() {
             $("#7btn").click(function(){
-                $("#sevenD").fadeToggle(500, function() {
-                    if ($(this).is(':visible')) {
-                        $(this).css('display', 'flex');
-                    }
-                });
+               $("#sevenD").toggleClass("flex hidden");
             });
         });
     </script>
