@@ -24,7 +24,7 @@
         
 
         <!-- Next 7 days -->
-         <div id="Sdays" class="flex flex-wrap justify-center gap-7 ">
+         <div id="Sdays" class="flex flex-wrap justify-center gap-7 hidden">
 
         </div>  
     </div>
@@ -68,6 +68,17 @@
 
       // For Next 7days with button
       async function Smoon() {
+
+        const button = document.getElementById('7btn');
+        // Disable button and show loading
+        button.disabled = true;
+        button.textContent = 'Loading...';
+
+        // Hiding results
+        document.getElementById('Sdays').classList.add('hidden');
+        document.getElementById('Sdays').classList.remove('flex');
+
+       
         
         // Clearing before once again
         const container1 = document.getElementById('Sdays');
@@ -102,6 +113,14 @@
                     </div> 
                 `;
             }
+
+            // Hiding loading 
+            button.disabled = false;
+            button.textContent = 'Next 7 days';
+
+            // Showing result
+            document.getElementById('Sdays').classList.remove('hidden');
+            document.getElementById('Sdays').classList.add('flex');
 
         }
 
