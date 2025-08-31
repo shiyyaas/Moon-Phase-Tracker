@@ -73,6 +73,9 @@
 
     <script>
 
+        let today = new Date();
+        today = today.toLocaleDateString();
+
       // For today's moon data (nowmoondata)
       async function nowmoon() {
                 const response = await fetch('https://api.apiverve.com/v1/moonphases', {
@@ -85,7 +88,7 @@
                 return nowmoondata;
                }
       // For displaying nowmoondata
-      function displaynowmoon(data) {
+      function displaynowmoon(data,today) {
           const container = document.getElementById('nowmoon');
           
           container.innerHTML = `
@@ -93,15 +96,15 @@
             <div class="w-24 h-24 bg-yellow-200 rounded-full flex items-center justify-center text-2xl">              
             ${data.data.phaseEmoji}
             </div>
-            <p class="text-gray-700">Today: ${data.data.phase}</p>
+            <p class="text-gray-700">${today}: ${data.data.phase}</p>
           </div>
           `;
         }
 
       // This works onstart or reload
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function() {  
           nowmoon().then(nowmoondata => {
-                displaynowmoon(nowmoondata);
+                displaynowmoon(nowmoondata,today);
             });
         });
       
