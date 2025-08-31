@@ -14,32 +14,18 @@
 <body>
     <div class="flex flex-col items-center justify-center min-h-screen bg-gray-100">
         <h1 class="text-3xl font-bold mb-4">Moon Phase Tracker</h1>
-        <div class="flex flex-col gap-3 items-center mb-6">
-            <div class="w-24 h-24 bg-yellow-200 rounded-full flex items-center justify-center text-2xl">              
-            🌒
-            </div>
-            <button id="7btn" class="px-4 py-2 bg-blue-500 text-white rounded">Next 7 days</button>
+
+        <!-- today moon phase -->
+        <div id="nowmoon">
+
         </div>
-        <p class="text-gray-700">Today (24/8/2025) : Waxing Crescent</p>
+        <button id="7btn" class="px-4 py-2 bg-blue-500 text-white rounded">Next 7 days</button>
+        
 
         <!-- Next 7 days -->
-        <div id="sevenD" class="flex-wrap justify-center gap-7 hidden">
+
             <div class="flex text-gray-700 my-10">
-                <div class="flex flex-col gap-3 items-center mb-6">
-                    <div class="w-24 h-24 bg-yellow-200 rounded-full flex items-center justify-center text-2xl">
-                    🌒
-                    </div>
-                    <p class="text-gray-700">25/8/2025 : Waxing Crescent</p>
-                </div>
-            </div>
-            <div class="flex text-gray-700 my-10">
-                <div class="flex flex-col gap-3 items-center mb-6">
-                    <div class="w-24 h-24 bg-yellow-200 rounded-full flex items-center justify-center text-2xl">
-                    🌒
-                    </div>
-                    <p class="text-gray-700">26/8/2025 : Waxing Crescent</p>
-                </div>
-            </div>
+            <!--
             <div class="flex text-gray-700 my-10">
                 <div class="flex flex-col gap-3 items-center mb-6">
                     <div class="w-24 h-24 bg-yellow-200 rounded-full flex items-center justify-center text-2xl">
@@ -79,16 +65,91 @@
                     </div>
                     <p class="text-gray-700">31/8/2025 : First Quarter</p>
                 </div>
-            </div>    
+            </div>   -->  
         </div>
 
         
     </div>
 
     <script>
+
+      // For today's moon data (nowmoondata)
+      async function nowmoon() {
+                const response = await fetch('https://api.apiverve.com/v1/moonphases', {
+                    method: 'GET',
+                    headers: {
+                        'X-API-Key': '79f5d1bc-2855-4c25-aa95-4fa5a2dc213',
+                    }
+                    });
+                const nowmoondata = await response.json();
+                return nowmoondata;
+               }
+      // For displaying nowmoondata
+      function displaynowmoon(data) {
+          const container = document.getElementById('nowmoon');
+          
+          container.innerHTML = `
+          <div class="flex flex-col gap-3 items-center mb-6">
+            <div class="w-24 h-24 bg-yellow-200 rounded-full flex items-center justify-center text-2xl">              
+            ${data.data.phaseEmoji}
+            </div>
+            <p class="text-gray-700">Today: ${data.data.phase}</p>
+          </div>
+          `;
+        }
+
+      // This works onstart or reload
+        document.addEventListener('DOMContentLoaded', function() {
+          nowmoon().then(nowmoondata => {
+                displaynowmoon(nowmoondata);
+            });
+        });
+      
+
+        // function displayMoonPhases(data) {
+        //   const container = document.getElementById('sevenD');
+          
+        //   container.innerHTML = `
+
+        //     <div class="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden">
+        //       <div class="p-6">
+        //         <div class="flex items-center justify-center mb-4">
+        //           <span class="text-6xl">${data.data.phaseEmoji}</span>
+        //         </div>
+        //         <h2 class="text-2xl font-bold text-center text-gray-900 mb-4">
+        //           ${data.data.phase}
+        //         </h2>
+        //         <div class="space-y-3">
+        //           <div class="flex justify-between">
+        //             <span class="text-gray-600">Waxing:</span>
+        //             <span class="font-medium ${data.data.waxing ? 'text-green-600' : 'text-red-600'}">
+        //               ${data.data.waxing ? 'Yes' : 'No'}
+        //             </span>
+        //           </div>
+        //           <div class="flex justify-between">
+        //             <span class="text-gray-600">Lunar Age:</span>
+        //             <span class="font-medium">${data.data.lunarAge.toFixed(2)} days</span>
+        //           </div>
+        //           <div class="flex justify-between">
+        //             <span class="text-gray-600">Lunation Number:</span>
+        //             <span class="font-medium">${data.data.lunationNumber}</span>
+        //           </div>
+        //           <div class="flex justify-between">
+        //             <span class="text-gray-600">Next Full Moon:</span>
+        //             <span class="font-medium text-blue-600">
+        //               ${new Date(data.data.nextFullMoon).toLocaleDateString()}
+        //             </span>
+        //           </div>
+        //         </div>
+        //       </div>
+        //     </div>
+        //   `;
+        // }
+
+        // jQuery
         $(document).ready(function() {
             $("#7btn").click(function(){
-               $("#sevenD").toggleClass("flex hidden");
+              //  $("#sevenD").toggleClass("flex hidden");
             });
         });
     </script>
