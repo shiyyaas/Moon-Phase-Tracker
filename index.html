@@ -38,7 +38,9 @@
                     }
                     });
                 const nowmoondata = await response.json();
-                return nowmoondata;
+                if (!response.ok) {
+                    throw new Error(`Failed to fetch moon phase data : CODE = ${response.status}`);
+                }else {return nowmoondata;}
                }
       // For displaying nowmoondata
         function displaynowmoon(data,today) {
@@ -93,6 +95,15 @@
                     }
                     });
                     const Smoondata = await response.json();
+                    if (!response.ok) {
+                        document.getElementById('Sdays').innerHTML += `
+                        <div class="flex flex-col gap-3 items-center mb-6">
+                            <p class="text-gray-700">Failed to fetch moon phase data for ${nextdayF}</p>
+                            <p class="text-gray-700">Error : CODE = ${response.status}</p>
+                        </div>
+                        `;
+                        continue; // Skip to the next iteration if there's an error
+                    }
                     // DISPLAYING THE DATA
                     const container1 = document.getElementById('Sdays');
                     container1.innerHTML += `
