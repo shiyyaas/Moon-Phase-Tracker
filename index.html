@@ -103,7 +103,7 @@
                     const Smoondata = await response.json();
                     if (!response.ok) {
                         document.getElementById('Sdays').innerHTML += `
-                        <div class="flex flex-col  items-center my-3">
+                        <div class="flex flex-col  items-center my-3 mx-3">
                             <p class="text-gray-700">Failed to fetch moon phase data for ${nextdayF}</p>
                             <p class="text-gray-700">Error : CODE = ${response.status}</p>
                         </div>
