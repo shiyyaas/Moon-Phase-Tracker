@@ -19,7 +19,20 @@
         <div id="nowmoon">
         </div>
 
-        <button id="7btn" onclick="Smoon()" class="px-4 py-2 bg-blue-500 text-white rounded">Next 7 days</button>
+        <section class="flex flex-col gap-4">
+            <div class="flex flex-col items-center gap-3">
+                <!-- CUSTOM DATE -->
+                <input type="date" id="customDate" class= "hover:border-blue-500 font-medium px-7 py-1 border rounded-2xl" />
+                <button id="customBtn" onclick="" class="px-4 py-2 hover:bg-green-600 bg-green-500 text-white rounded-3xl">Get CustomDate</button>  
+            </div>
+
+            <div class="flex justify-center gap-3">
+                <!-- NEXT 7DAYS -->
+                <button id="7btn" onclick="Smoon()" class="px-6 py-2 hover:bg-blue-600 bg-blue-500 text-white rounded-3xl">Get Next Week</button>
+            </div>
+            
+        </section>
+
         <div id="spinner" class="hidden">
             <img class="lg:w-auto w-80 " src="/images/cat loading.gif" alt="loading">
         </div>
@@ -126,7 +139,7 @@
 
                 // Hiding loading 
                 button.disabled = false;
-                button.textContent = 'Next 7 days';
+                button.textContent = 'Get Next Week';
                 document.getElementById('spinner').classList.add('hidden');
                 document.getElementById('spinner').classList.remove('block');
                 // Showing result
