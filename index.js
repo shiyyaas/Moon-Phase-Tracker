@@ -195,7 +195,7 @@ const MoonPhaseTracker = {
     async loadCustomDate() {
         const customDateInput = document.getElementById('customDate');
         if (!customDateInput.value) {
-            alert('Please select a date!');
+            alert('Brohhh select a dateee!');
             return;
         }
         const customDate = DateUtils.formatDate(new Date(customDateInput.value));
