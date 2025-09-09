@@ -6,7 +6,7 @@
 // This makes it easy to change settings without hunting through the code
 const API_CONFIG = {
     BASE_URL: 'https://api.apiverve.com/v1/moonphases', // The API endpoint we'll call
-    API_KEY: 'Add your KEY HERE', // Replace with your actual API key
+    API_KEY: '79f5d1bc-2855-4c25-aa95-4fa5a2dc2136', // Replace with your actual API key
     STORAGE_KEY: 'moonPhaseData' // Key name for storing data in localStorage
 };
 
